@@ -1,0 +1,51 @@
+class Asset:
+    def __init__(self, name, status, permission):
+        self.name = name
+        self.status = status  # Active or inactive
+        self.permission = permission  # True if permission granted, False otherwise
+
+
+def search_cheat_codes():
+    assets = [
+        Asset("IR17", "Active", True),
+        Asset("IR22", "Inactive", False),
+        Asset("pansat1", "Active", True),
+        Asset("luna", "Active", True),
+        Asset("LEO_asset1", "Active", True),
+        Asset("LEO_asset2", "Inactive", True),
+        Asset("terrestrial_asset1", "Active", False),
+        Asset("terrestrial_asset2", "Active", True),
+        Asset("amphibious_asset1", "Active", True),
+        Asset("amphibious_asset2", "Inactive", True)
+    ]
+
+    cheat_codes = []
+
+    for asset in assets:
+        if asset.status == "Active" and (asset.permission or asset.name.startswith("LEO")):
+            cheat_codes.extend(find_cheat_codes(asset.name))
+
+    forward_cheat_codes(cheat_codes, assets)
+
+
+def find_cheat_codes(asset_name):
+    # Placeholder logic to search for cheat codes in the specified asset
+    # Replace with actual implementation
+    cheat_codes = []
+
+    # Simulated cheat code generation for demonstration purposes
+    cheat_codes.append(f"Cheat code for {asset_name}: XYZ")
+
+    return cheat_codes
+
+
+def forward_cheat_codes(cheat_codes, assets):
+    # Forward cheat codes to every active asset and every asset that has allowed access
+    for code in cheat_codes:
+        for asset in assets:
+            if asset.status == "Active" and asset.permission:
+                print(f"Forwarding cheat code '{code}' to {asset.name}...")
+
+
+if __name__ == "__main__":
+    search_cheat_codes()
